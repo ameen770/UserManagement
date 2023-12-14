@@ -1,12 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using UserManagement.Application.IGenericRepo;
-using UserManagement.Application.Interfaces;
 
 namespace UserManagement.Application
 {
@@ -20,11 +14,6 @@ namespace UserManagement.Application
             // Configuration Of Automapper
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            // Register DepartmentRepository implementation
-            services.AddTransient<IDepartmentRepository>();
-
-            // Register GenericRepository implementation
-            services.AddTransient(typeof(IGenericRepository<>));
             return services;
         }
     }

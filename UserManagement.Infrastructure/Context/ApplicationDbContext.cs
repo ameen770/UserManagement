@@ -6,7 +6,7 @@ using UserManagement.Domain.Entities;
 
 namespace UserManagement.Infrastructure.Context
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -22,9 +22,10 @@ namespace UserManagement.Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new RoleSeedConfiguration());
+            /*modelBuilder.ApplyConfiguration(new RoleSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleSeedConfiguration());*/
+
             modelBuilder.ApplyConfiguration(new UserSeedConfiguration());
-            modelBuilder.ApplyConfiguration(new UserRoleSeedConfiguration());
             modelBuilder.ApplyConfiguration(new DepartmentSeedConfiguration());
         }
 
@@ -48,5 +49,6 @@ namespace UserManagement.Infrastructure.Context
         }
 
         public DbSet<Department> departments { get; set; }
+        public DbSet<AppUser> appUsers { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace UserManagement.Application.Features.Departments.Queries.Results
 {
     public class GetDepartmentListResponse
     {
-        public int DepartmentId { get; set; }
+        public int Id { get; set; }
         public string DepartmentName { get; set; }
     }
 }

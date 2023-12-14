@@ -1,32 +1,24 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using UserManagement.Domain.IGenericRepo;
+using UserManagement.Application.Services;
 using UserManagement.Infrastructure.Repositories;
 using UserManagement.Infrastructure.GenericRepo;
-using UserManagement.Application.IGenericRepo;
-using UserManagement.Application.Interfaces;
+using UserManagement.Domain.Interfaces;
+using UserManagement.Infrastructure.Services;
 
 namespace UserManagement.Infrastructure
 {
     public static class ModuleInfrastructureDependencies
     {
-        /*public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services) 
-        {
-            *//*services.AddTransient<IDepartmentRepository, DepartmentRepository>();
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));*//*
-
-            // Register DepartmentRepository implementation
-            services.AddTransient<DepartmentRepository>();
-
-            // Register GenericRepository implementation
-            services.AddTransient(typeof(GenericRepository<>));
-            return services;
-        }*/
         public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
         {
             // Register DepartmentRepository implementation
-            services.AddTransient<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
+            services.AddScoped<IDepartmentService, DepartmentService>();
 
             // Register GenericRepository implementation
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             return services;
         }

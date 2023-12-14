@@ -1,15 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserManagement.Application.BasesHandlers;
 using UserManagement.Application.Features.Departments.Queries.Models;
 using UserManagement.Application.Features.Departments.Queries.Results;
-using UserManagement.Application.Interfaces;
-using UserManagement.Domain.Entities;
+using UserManagement.Application.Services;
 
 namespace UserManagement.Application.Features.Departments.Queries.Handlers
 {
@@ -18,30 +12,30 @@ namespace UserManagement.Application.Features.Departments.Queries.Handlers
         IRequestHandler<GetDepartmentByIdQuery, Response<GitSingleDepartmentResponse>>
     {
         #region Fields
-        private readonly IDepartmentRepository _departmentRepository;
+        private readonly IDepartmentService _departmentService;
         private readonly IMapper _mapper;
         #endregion
 
 
         #region Constractors
-        public DepartmentQueryHandler(IDepartmentRepository departmentRepository, IMapper mapper)
+        public DepartmentQueryHandler(IDepartmentService departmentService, IMapper mapper)
         {
-            _departmentRepository = departmentRepository;
-            _mapper = mapper;
+            _departmentService = departmentService;// ?? throw new ArgumentNullException(nameof(departmentService));
+            _mapper = mapper;// ?? throw new ArgumentNullException(nameof(mapper));
         }
         #endregion
 
         #region Handles Functions
         public async Task<Response<List<GetDepartmentListResponse>>> Handle(GetDepartmentListQuery request, CancellationToken cancellationToken)
         {
-            var departmentList = await _departmentRepository.GetDepartmentsListAsync();
+            var departmentList = await _departmentService.GetDepartmentsLists();
             var departmentListMapper = _mapper.Map<List<GetDepartmentListResponse>>(departmentList);
             return Success(departmentListMapper);
         }
 
         public async Task<Response<GitSingleDepartmentResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
-            var department = await _departmentRepository.GetDepartmentByIdAsync(request.Id);
+            var department = await _departmentService.GetDepartmentByIds(request.Id);
             if (department == null) return NotFound<GitSingleDepartmentResponse>("Department Not Found");
             var result = _mapper.Map<GitSingleDepartmentResponse>(department);
             return Success(result);

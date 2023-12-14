@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UserManagement.Application.IGenericRepo
+namespace UserManagement.Domain.IGenericRepo
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
-        Task<T> AddAsync(T entity);
+        Task<T> GetByIdAsync(int? id);
+/*        Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(T entity);*/
         IQueryable<T> GetTableNoTracking();
-        IQueryable<T> GetTableAsTracking();
+/*        IQueryable<T> GetTableAsTracking();
 
 
         Task DeleteRangeAsync(ICollection<T> entities);
@@ -26,6 +26,6 @@ namespace UserManagement.Application.IGenericRepo
         Task UpdateRangeAsync(ICollection<T> entities);
         Task<IDbContextTransaction> BeginTransactionAsync();
         Task CommitAsync();
-        Task RollBackAsync();
+        Task RollBackAsync();*/
     }
 }

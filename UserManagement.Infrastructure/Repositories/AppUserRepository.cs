@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿/*using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,3 +32,4 @@ namespace UserManagement.Infrastructure.Repositories
         #endregion
     }
 }
+*/

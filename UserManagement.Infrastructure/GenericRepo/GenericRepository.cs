@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Infrastructure.Context;
-using UserManagement.Application.IGenericRepo;
+using UserManagement.Domain.IGenericRepo;
 
 namespace UserManagement.Infrastructure.GenericRepo
 {
@@ -32,9 +32,8 @@ namespace UserManagement.Infrastructure.GenericRepo
         #endregion
 
         #region Actions
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T> GetByIdAsync(int? id)
         {
-
             return await _dbContext.Set<T>().FindAsync(id);
         }
 
@@ -45,7 +44,7 @@ namespace UserManagement.Infrastructure.GenericRepo
         }
 
 
-        public virtual async Task AddRangeAsync(ICollection<T> entities)
+        /*public virtual async Task AddRangeAsync(ICollection<T> entities)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
             await _dbContext.SaveChangesAsync();
@@ -128,7 +127,7 @@ namespace UserManagement.Infrastructure.GenericRepo
         public async Task RollBackAsync()
         {
             await _dbContext.Database.RollbackTransactionAsync();
-        }
+        }*/
         #endregion
     }
 }

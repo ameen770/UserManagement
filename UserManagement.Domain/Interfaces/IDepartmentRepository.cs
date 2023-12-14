@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Domain.Entities;
-using UserManagement.Application.IGenericRepo;
+using UserManagement.Domain.IGenericRepo;
 
-namespace UserManagement.Application.Interfaces
+namespace UserManagement.Domain.Interfaces
 {
     public interface IDepartmentRepository : IGenericRepository<Department>
     {
         public Task<List<Department>> GetDepartmentsListAsync();
-        public Task<Department> GetDepartmentByIdAsync(int id);
+        // public Task<Department> GetDepartmentByIdAsync(int? id);
     }
 }
