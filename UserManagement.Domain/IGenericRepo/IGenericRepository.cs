@@ -10,22 +10,24 @@ namespace UserManagement.Domain.IGenericRepo
     public interface IGenericRepository<T> where T : class
     {
         Task<T> GetByIdAsync(int? id);
-/*        Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);*/
+        Task DeleteAsync(T entity);
         IQueryable<T> GetTableNoTracking();
-/*        IQueryable<T> GetTableAsTracking();
-
-
-        Task DeleteRangeAsync(ICollection<T> entities);
-        Task SaveChangesAsync();
         IDbContextTransaction BeginTransaction();
-        void Commit();
-        void RollBack(); 
-        Task AddRangeAsync(ICollection<T> entities);  
-        Task UpdateRangeAsync(ICollection<T> entities);
-        Task<IDbContextTransaction> BeginTransactionAsync();
-        Task CommitAsync();
-        Task RollBackAsync();*/
+
+        /*        IQueryable<T> GetTableAsTracking();
+
+
+                Task DeleteRangeAsync(ICollection<T> entities);
+                Task SaveChangesAsync();
+
+                void Commit();
+                void RollBack(); 
+                Task AddRangeAsync(ICollection<T> entities);  
+                Task UpdateRangeAsync(ICollection<T> entities);
+                Task<IDbContextTransaction> BeginTransactionAsync();
+                Task CommitAsync();
+                Task RollBackAsync();*/
     }
 }

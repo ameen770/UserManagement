@@ -1,8 +1,11 @@
-﻿using MediatR;
+﻿using Microsoft.AspNetCore.Mvc;
+using UserManagement.WebAPI.Base;
+using MediatR;
 using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using UserManagement.Application.Features.Departments.Commands.Models;
 using UserManagement.Application.Features.Departments.Queries.Models;
+using Microsoft.AspNetCore.Authorization;
 //using Router = UserManagement.Domain.AppMetaData.Router;
 
 namespace UserManagement.WebAPI.Controllers
@@ -35,6 +38,27 @@ namespace UserManagement.WebAPI.Controllers
         {
             var response = await _mediator.Send(new GetDepartmentByIdQuery(id));
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] AddDepartmentCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+            //return NewResult(response);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Edit([FromBody] EditDepartmentCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpDelete("/{id}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            return Ok(await _mediator.Send(new DeleteDepartmentCommand(id)));
         }
     }
 }

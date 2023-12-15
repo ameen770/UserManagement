@@ -44,12 +44,7 @@ namespace UserManagement.Infrastructure.GenericRepo
         }
 
 
-        /*public virtual async Task AddRangeAsync(ICollection<T> entities)
-        {
-            await _dbContext.Set<T>().AddRangeAsync(entities);
-            await _dbContext.SaveChangesAsync();
-
-        }
+        
         public virtual async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
@@ -70,6 +65,19 @@ namespace UserManagement.Infrastructure.GenericRepo
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
+
+        public IDbContextTransaction BeginTransaction()
+        {
+            return _dbContext.Database.BeginTransaction();
+        }
+
+        /*public virtual async Task AddRangeAsync(ICollection<T> entities)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(entities);
+            await _dbContext.SaveChangesAsync();
+
+        }
+
         public virtual async Task DeleteRangeAsync(ICollection<T> entities)
         {
             foreach (var entity in entities)
@@ -82,13 +90,6 @@ namespace UserManagement.Infrastructure.GenericRepo
         public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
-        }
-
-
-
-        public IDbContextTransaction BeginTransaction()
-        {
-            return _dbContext.Database.BeginTransaction();
         }
 
         public void Commit()

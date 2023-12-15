@@ -15,6 +15,8 @@ namespace UserManagement.Application.Mapping.Departments
         {
             GetStudentListMapping();
             GetStudentByIdMapping();
+            AddDepartmentCommandMapping();
+            EditDepartmentCommandMapping();
         }
     }
 }

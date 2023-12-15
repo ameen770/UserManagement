@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,12 @@ namespace UserManagement.Infrastructure.Services
         #endregion
 
         #region Handles Functions
+        public async Task<List<Department>> GetDepartmentsLists()
+        {
+            var department = await _departmentRepository.GetDepartmentsListAsync();
+            return department;
+        }
+
         public async Task<Department> GetDepartmentByIds(int? id)
         {
             var department = await _departmentRepository.GetTableNoTracking()
@@ -33,10 +40,50 @@ namespace UserManagement.Infrastructure.Services
             return department;
         }
 
-        public async Task<List<Department>> GetDepartmentsLists()
+        public async Task<string> AddAsync(Department department)
         {
-            var department = await _departmentRepository.GetDepartmentsListAsync();
-            return department;
+            await _departmentRepository.AddAsync(department);
+            return "Success";
+        }
+
+        public async Task<bool> IsNameArExist(string name)
+        {
+            //Check if the name is Exist Or not
+            var department = _departmentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name)).FirstOrDefault();
+            if (department == null) return false;
+            return true;
+        }
+
+        public async Task<string> EditAsync(Department department)
+        {
+            await _departmentRepository.UpdateAsync(department);
+            return "Success";
+        }
+
+        public async Task<bool> IsNameArExistExcludeSelf(string name, int id)
+        {
+            //Check if the name is Exist Or not
+            var department = await _departmentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name) & !x.Id.Equals(id)).FirstOrDefaultAsync();
+            if (department == null) return false;
+            return true;
+        }
+
+        public async Task<string> DeleteAsync(Department department)
+        {
+            var trans = _departmentRepository.BeginTransaction();
+            try
+            {
+                await _departmentRepository.DeleteAsync(department);
+                await trans.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                await trans.RollbackAsync();
+                Log.Error(ex.Message);
+                return "Falied";
+            }
+
         }
         #endregion
     }
