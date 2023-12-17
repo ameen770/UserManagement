@@ -36,7 +36,7 @@ namespace UserManagement.Application.Features.Departments.Commands.Handlers
 
         public async Task<Response<string>> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
         {
-            //mapping Between request and student
+            //mapping Between request and Department
             var departmentmapper = _mapper.Map<Department>(request);
             //add
             var result = await _departmentService.AddAsync(departmentmapper);

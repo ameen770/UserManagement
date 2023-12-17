@@ -16,6 +16,10 @@ namespace UserManagement.Infrastructure
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
             services.AddScoped<IDepartmentService, DepartmentService>();
+            
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
+
+            services.AddScoped<IAppUserService, AppUserService>();
 
             // Register GenericRepository implementation
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

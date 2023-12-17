@@ -8,7 +8,7 @@ using UserManagement.Application.Services;
 namespace UserManagement.Application.Features.Departments.Queries.Handlers
 {
     public class DepartmentQueryHandler : ResponseHandler,
-        IRequestHandler<GetDepartmentListQuery, Response<List<GetDepartmentListResponse>>>,
+        IRequestHandler<GetDepartmentsListQuery, Response<List<GetDepartmentsListResponse>>>,
         IRequestHandler<GetDepartmentByIdQuery, Response<GitSingleDepartmentResponse>>
     {
         #region Fields
@@ -26,10 +26,10 @@ namespace UserManagement.Application.Features.Departments.Queries.Handlers
         #endregion
 
         #region Handles Functions
-        public async Task<Response<List<GetDepartmentListResponse>>> Handle(GetDepartmentListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetDepartmentsListResponse>>> Handle(GetDepartmentsListQuery request, CancellationToken cancellationToken)
         {
             var departmentList = await _departmentService.GetDepartmentsLists();
-            var departmentListMapper = _mapper.Map<List<GetDepartmentListResponse>>(departmentList);
+            var departmentListMapper = _mapper.Map<List<GetDepartmentsListResponse>>(departmentList);
             return Success(departmentListMapper);
         }
 

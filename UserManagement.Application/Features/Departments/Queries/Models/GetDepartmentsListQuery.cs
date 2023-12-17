@@ -9,7 +9,7 @@ using UserManagement.Application.Features.Departments.Queries.Results;
 
 namespace UserManagement.Application.Features.Departments.Queries.Models
 {
-    public class GetDepartmentListQuery : IRequest<Response<List<GetDepartmentListResponse>>>
+    public class GetDepartmentsListQuery : IRequest<Response<List<GetDepartmentsListResponse>>>
     {
     }
 }

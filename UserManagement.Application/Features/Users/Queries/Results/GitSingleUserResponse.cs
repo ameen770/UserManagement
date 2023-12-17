@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserManagement.Domain.Enum;
 
-namespace UserManagement.Domain.Entities
+namespace UserManagement.Application.Features.Users.Queries.Results
 {
-    public class AppUser
+    public class GitSingleUserResponse
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -16,9 +14,7 @@ namespace UserManagement.Domain.Entities
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public UserStatus Status { get; set; } = UserStatus.Active;
-
+        public string Status { get; set; }
         public int DepartmentId { get; set; }
-        public virtual Department? Department { get; set; }
     }
 }

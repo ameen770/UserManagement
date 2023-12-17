@@ -13,7 +13,6 @@ builder.Services.AddSwaggerGen();
 
 #region Dependency Injection
 builder.Services.AddInfrastructureDependencies().AddCoreDependencies();
-
 #endregion
 
 // Connection to SQL Server

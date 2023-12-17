@@ -13,8 +13,8 @@ namespace UserManagement.Application.Mapping.Departments
     {
         public DepartmentProfile()
         {
-            GetStudentListMapping();
-            GetStudentByIdMapping();
+            GetDepartmentsListMapping();
+            GetDepartmentByIdMapping();
             AddDepartmentCommandMapping();
             EditDepartmentCommandMapping();
         }

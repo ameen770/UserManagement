@@ -10,7 +10,7 @@ namespace UserManagement.Application.Mapping.Departments
 {
     public partial class DepartmentProfile
     {
-        public void GetStudentByIdMapping()
+        public void GetDepartmentByIdMapping()
         {
             CreateMap<Department, GitSingleDepartmentResponse>()
                 .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Name));

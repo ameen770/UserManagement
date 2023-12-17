@@ -10,9 +10,9 @@ namespace UserManagement.Application.Mapping.Departments
 {
     public partial class DepartmentProfile
     {
-        public void GetStudentListMapping()
+        public void GetDepartmentsListMapping()
         {
-            CreateMap<Department, GetDepartmentListResponse>()
+            CreateMap<Department, GetDepartmentsListResponse>()
                 .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Name));
         }
     }

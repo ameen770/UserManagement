@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManagement.WebAPI.Base;
 using MediatR;
-using Microsoft.AspNetCore.Components.Routing;
-using Microsoft.AspNetCore.Http;
 using UserManagement.Application.Features.Departments.Commands.Models;
 using UserManagement.Application.Features.Departments.Queries.Models;
-using Microsoft.AspNetCore.Authorization;
-//using Router = UserManagement.Domain.AppMetaData.Router;
+using UserManagement.Domain.AppMetaData;
 
 namespace UserManagement.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
@@ -22,25 +17,22 @@ namespace UserManagement.WebAPI.Controllers
         }
 
         // GET /api/Student/List?$orderby=Name
-        [HttpGet]
-        // [EnableQuery]
-        public async Task<IActionResult> GetStudentList()
+        [HttpGet(Router.DepartmentRouting.List)]
+        public async Task<IActionResult> GetDepartmentsList()
         {
-            var response = await _mediator.Send(new GetDepartmentListQuery());
+            var response = await _mediator.Send(new GetDepartmentsListQuery());
             return Ok(response);
         }
 
         // GET /api/Student/List/5
-        [HttpGet("/{id}")]
-        //[HttpGet(Router.DepartmentRouting.GetByID)]
-        // [EnableQuery]
-        public async Task<IActionResult> GetStudentList([FromRoute] int id)
+        [HttpGet(Router.DepartmentRouting.GetByID)]
+        public async Task<IActionResult> GetDepartmentById([FromRoute] int id)
         {
             var response = await _mediator.Send(new GetDepartmentByIdQuery(id));
             return Ok(response);
         }
 
-        [HttpPost]
+        [HttpPost(Router.DepartmentRouting.Create)]
         public async Task<IActionResult> Create([FromBody] AddDepartmentCommand command)
         {
             var response = await _mediator.Send(command);
@@ -48,14 +40,14 @@ namespace UserManagement.WebAPI.Controllers
             //return NewResult(response);
         }
 
-        [HttpPut]
+        [HttpPut(Router.DepartmentRouting.Edit)]
         public async Task<IActionResult> Edit([FromBody] EditDepartmentCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete(Router.DepartmentRouting.Delete)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             return Ok(await _mediator.Send(new DeleteDepartmentCommand(id)));

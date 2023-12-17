@@ -36,7 +36,7 @@ namespace UserManagement.Application.Features.Departments.Commands.Validatiors
         public void ApplyCustomValidationsRules()
         {
             RuleFor(x => x.Name)
-                .MustAsync(async (model, Key, CancellationToken) => !await _departmentService.IsNameArExistExcludeSelf(Key, model.Id))
+                .MustAsync(async (model, Key, CancellationToken) => !await _departmentService.IsNameExistExcludeSelf(Key, model.Id))
                 .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
         }
         #endregion

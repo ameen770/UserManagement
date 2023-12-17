@@ -46,7 +46,7 @@ namespace UserManagement.Infrastructure.Services
             return "Success";
         }
 
-        public async Task<bool> IsNameArExist(string name)
+        public async Task<bool> IsNameExist(string name)
         {
             //Check if the name is Exist Or not
             var department = _departmentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name)).FirstOrDefault();
@@ -60,7 +60,7 @@ namespace UserManagement.Infrastructure.Services
             return "Success";
         }
 
-        public async Task<bool> IsNameArExistExcludeSelf(string name, int id)
+        public async Task<bool> IsNameExistExcludeSelf(string name, int id)
         {
             //Check if the name is Exist Or not
             var department = await _departmentRepository.GetTableNoTracking().Where(x => x.Name.Equals(name) & !x.Id.Equals(id)).FirstOrDefaultAsync();
@@ -84,6 +84,11 @@ namespace UserManagement.Infrastructure.Services
                 return "Falied";
             }
 
+        }
+
+        public async Task<bool> IsDepartmentIdExist(int departmentId)
+        {
+            return await _departmentRepository.GetTableNoTracking().AnyAsync(x => x.Id.Equals(departmentId));
         }
         #endregion
     }

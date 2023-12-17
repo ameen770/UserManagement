@@ -1,11 +1,6 @@
-﻿/*using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UserManagement.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 using UserManagement.Domain.Entities;
+using UserManagement.Domain.Interfaces;
 using UserManagement.Infrastructure.Context;
 using UserManagement.Infrastructure.GenericRepo;
 
@@ -27,9 +22,9 @@ namespace UserManagement.Infrastructure.Repositories
         #region Handles Functions
         public async Task<List<AppUser>> GetUsersListAsync()
         {
-            return await _appUser.Include(x => x.Department).ToListAsync();
+            return await _appUser.ToListAsync();
+            //Include(x => x.Department).
         }
         #endregion
     }
 }
-*/
