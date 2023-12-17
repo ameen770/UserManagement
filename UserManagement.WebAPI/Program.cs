@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using UserManagement.Infrastructure.Context;
-using UserManagement.Infrastructure;
-using UserManagement.Application;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using UserManagement.Application;
+using UserManagement.Infrastructure;
+using UserManagement.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +42,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 });
 
 var app = builder.Build();
-
+//command
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
