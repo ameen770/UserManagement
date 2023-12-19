@@ -9,7 +9,7 @@ namespace UserManagement.Application.Features.Departments.Queries.Handlers
 {
     public class DepartmentQueryHandler : ResponseHandler,
         IRequestHandler<GetDepartmentsListQuery, Response<List<GetDepartmentsListResponse>>>,
-        IRequestHandler<GetDepartmentByIdQuery, Response<GitSingleDepartmentResponse>>
+        IRequestHandler<GetDepartmentByIdQuery, Response<GetSingleDepartmentResponse>>
     {
         #region Fields
         private readonly IDepartmentService _departmentService;
@@ -33,11 +33,11 @@ namespace UserManagement.Application.Features.Departments.Queries.Handlers
             return Success(departmentListMapper);
         }
 
-        public async Task<Response<GitSingleDepartmentResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetSingleDepartmentResponse>> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
         {
             var department = await _departmentService.GetDepartmentByIds(request.Id);
-            if (department == null) return NotFound<GitSingleDepartmentResponse>("Department Not Found");
-            var result = _mapper.Map<GitSingleDepartmentResponse>(department);
+            if (department == null) return NotFound<GetSingleDepartmentResponse>("Department Not Found");
+            var result = _mapper.Map<GetSingleDepartmentResponse>(department);
             return Success(result);
         }
         #endregion

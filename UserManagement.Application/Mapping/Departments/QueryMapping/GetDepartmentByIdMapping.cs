@@ -12,7 +12,7 @@ namespace UserManagement.Application.Mapping.Departments
     {
         public void GetDepartmentByIdMapping()
         {
-            CreateMap<Department, GitSingleDepartmentResponse>()
+            CreateMap<Department, GetSingleDepartmentResponse>()
                 .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.Name));
         }
     }

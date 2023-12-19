@@ -9,7 +9,7 @@ using UserManagement.Application.Features.Departments.Queries.Results;
 
 namespace UserManagement.Application.Features.Departments.Queries.Models
 {
-    public class GetDepartmentByIdQuery : IRequest<Response<GitSingleDepartmentResponse>>
+    public class GetDepartmentByIdQuery : IRequest<Response<GetSingleDepartmentResponse>>
     {
         public int Id { get; set; }
 
