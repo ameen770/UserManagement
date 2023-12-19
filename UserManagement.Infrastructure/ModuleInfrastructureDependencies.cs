@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using UserManagement.Domain.IGenericRepo;
-using UserManagement.Application.Services;
+using UserManagement.Application.IGenericRepo;
+using UserManagement.Application.IServices;
 using UserManagement.Infrastructure.Repositories;
 using UserManagement.Infrastructure.GenericRepo;
-using UserManagement.Domain.Interfaces;
+using UserManagement.Application.Interfaces;
 using UserManagement.Infrastructure.Services;
 
 namespace UserManagement.Infrastructure

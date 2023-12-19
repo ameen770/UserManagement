@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.Interfaces;
+using UserManagement.Application.Interfaces;
 using UserManagement.Infrastructure.Context;
 using UserManagement.Infrastructure.GenericRepo;
 

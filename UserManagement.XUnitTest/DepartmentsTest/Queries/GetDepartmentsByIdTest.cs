@@ -11,7 +11,7 @@ using UserManagement.Application.Features.Departments.Queries.Handlers;
 using UserManagement.Application.Features.Departments.Queries.Models;
 using UserManagement.Application.Features.Departments.Queries.Results;
 using UserManagement.Application.Mapping.Departments;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
 
 namespace UserManagement.XUnitTest.DepartmentsTest.Queries
@@ -40,6 +40,7 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
                 new Department() {Id=2, Name="Software Engineering"},
                 new Department() {Id=3, Name="System Developers"}
             };
+
             var query = new GetDepartmentByIdQuery(id);
             _departmentServiceMock.Setup(d => d.GetDepartmentByIds(id)).Returns(Task.FromResult(departmentList.FirstOrDefault(x => x.Id == id)));
             var handle = new DepartmentQueryHandler(_departmentServiceMock.Object, _mapperMock);
@@ -48,7 +49,6 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
 
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
             result.Data.Should().BeNull();
-            // result.Data.Should().BeOfType<GetSingleDepartmentResponse>();
             result.Succeeded.Should().BeFalse();
         }
         

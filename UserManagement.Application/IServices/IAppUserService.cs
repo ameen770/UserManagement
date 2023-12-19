@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Domain.Entities;
 
-namespace UserManagement.Application.Services
+namespace UserManagement.Application.IServices
 {
     public interface IAppUserService
     {

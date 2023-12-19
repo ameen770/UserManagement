@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.Interfaces;
-using UserManagement.Infrastructure.Repositories;
+using UserManagement.Application.Interfaces;
 
 namespace UserManagement.Infrastructure.Services
 {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Infrastructure.Context;
-using UserManagement.Domain.IGenericRepo;
+using UserManagement.Application.IGenericRepo;
 
 namespace UserManagement.Infrastructure.GenericRepo
 {

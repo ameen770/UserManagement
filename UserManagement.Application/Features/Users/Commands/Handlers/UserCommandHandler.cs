@@ -5,7 +5,7 @@ using UserManagement.Application.BasesHandlers;
 using UserManagement.Application.Features.Users.Commands.Models;
 using UserManagement.Application.Resources;
 using UserManagement.Domain.Entities;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 
 namespace UserManagement.Application.Features.Users.Commands.Handlers
 {

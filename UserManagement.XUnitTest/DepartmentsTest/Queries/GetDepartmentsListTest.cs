@@ -10,7 +10,7 @@ using UserManagement.Application.Features.Departments.Queries.Handlers;
 using UserManagement.Application.Features.Departments.Queries.Models;
 using UserManagement.Application.Features.Departments.Queries.Results;
 using UserManagement.Application.Mapping.Departments;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
 
 namespace UserManagement.XUnitTest.DepartmentsTest.Queries

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.IGenericRepo;
+using UserManagement.Application.IGenericRepo;
 
-namespace UserManagement.Domain.Interfaces
+namespace UserManagement.Application.Interfaces
 {
     public interface IDepartmentRepository : IGenericRepository<Department>
     {

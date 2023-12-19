@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Localization;
 using UserManagement.Application.Features.Users.Commands.Models;
 using UserManagement.Application.Resources;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 
 namespace UserManagement.Application.Features.Users.Commands.Validatiors
 {

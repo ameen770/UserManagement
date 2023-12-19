@@ -5,7 +5,7 @@ using UserManagement.Application.BasesHandlers;
 using UserManagement.Application.Features.Users.Queries.Models;
 using UserManagement.Application.Features.Users.Queries.Results;
 using UserManagement.Application.Resources;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 
 namespace UserManagement.Application.Features.Users.Queries.Handlers
 {

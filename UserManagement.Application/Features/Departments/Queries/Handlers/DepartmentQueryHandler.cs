@@ -3,7 +3,7 @@ using MediatR;
 using UserManagement.Application.BasesHandlers;
 using UserManagement.Application.Features.Departments.Queries.Models;
 using UserManagement.Application.Features.Departments.Queries.Results;
-using UserManagement.Application.Services;
+using UserManagement.Application.IServices;
 
 namespace UserManagement.Application.Features.Departments.Queries.Handlers
 {

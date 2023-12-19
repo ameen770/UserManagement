@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Domain.Entities;
-using UserManagement.Domain.Interfaces;
+using UserManagement.Application.Interfaces;
 
-namespace UserManagement.Application.Services
+namespace UserManagement.Application.IServices
 {
     public interface IDepartmentService
     {
