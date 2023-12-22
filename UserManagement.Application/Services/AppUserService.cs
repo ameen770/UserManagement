@@ -9,7 +9,7 @@ using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
 using UserManagement.Application.Interfaces;
 
-namespace UserManagement.Infrastructure.Services
+namespace UserManagement.Application.Services
 {
     public class AppUserService : IAppUserService
     {
@@ -31,10 +31,10 @@ namespace UserManagement.Infrastructure.Services
             return appUser;
         }
 
-        public async Task<AppUser> GetUserByIds(int? id)
+        public async Task<AppUser> GetUserByIds(int id)
         {
-            var appUser = await _appUserRepository.GetTableNoTracking()//.Include(d => d.Department)
-                                                  .Where(d => d.Id.Equals(id))
+            var appUser = await _appUserRepository.GetTableNoTracking().Include(d => d.Department)
+                                                  .Where(s => s.Id.Equals(id))
                                                   .FirstOrDefaultAsync();
             return appUser;
         }

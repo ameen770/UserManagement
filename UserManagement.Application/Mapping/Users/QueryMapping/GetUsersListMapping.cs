@@ -21,6 +21,7 @@ namespace UserManagement.Application.Mapping.Users
                .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.DepartmentId));
+               //.ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.DepartmentId));
         }
     }
 }

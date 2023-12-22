@@ -9,7 +9,7 @@ using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
 using UserManagement.Application.Interfaces;
 
-namespace UserManagement.Infrastructure.Services
+namespace UserManagement.Application.Services
 {
     public class DepartmentService : IDepartmentService
     {

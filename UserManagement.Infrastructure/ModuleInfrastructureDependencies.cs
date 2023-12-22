@@ -4,7 +4,7 @@ using UserManagement.Application.IServices;
 using UserManagement.Infrastructure.Repositories;
 using UserManagement.Infrastructure.GenericRepo;
 using UserManagement.Application.Interfaces;
-using UserManagement.Infrastructure.Services;
+using UserManagement.Application.Services;
 
 namespace UserManagement.Infrastructure
 {

@@ -10,7 +10,7 @@ namespace UserManagement.Application.IServices
     public interface IAppUserService
     {
         public Task<List<AppUser>> GetUsersLists();
-        public Task<AppUser> GetUserByIds(int? id);
+        public Task<AppUser> GetUserByIds(int id);
         public Task<string> AddAsync(AppUser appUser);
         public Task<bool> IsEmailExist(string email);
         public Task<string> EditAsync(AppUser appUser);

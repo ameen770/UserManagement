@@ -13,8 +13,11 @@ using UserManagement.Application.Features.Departments.Queries.Results;
 using UserManagement.Application.Mapping.Departments;
 using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
+using UserManagement.XUnitTest.TestModel;
 
-namespace UserManagement.XUnitTest.DepartmentsTest.Queries
+// Use Parallel Test
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, MaxParallelThreads = 6)]
+namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
 {
     public class GetDepartmentsByIdTest
     {
@@ -34,6 +37,8 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
         [InlineData(5)]
         public async Task Handle_Department_By_Id_Should_NotFound_Return_404(int id)
         {
+            Thread.Sleep(3000);
+
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"},
@@ -53,9 +58,13 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
         }
         
         [Theory]
-        [InlineData(1)]
+        //[InlineData(1)]
+        //[ClassData(typeof(PassDataByClassData))]
+        [MemberData(nameof(PassDataByMemberData.GetDataParam), MemberType = typeof(PassDataByMemberData))]
         public async Task Handle_Department_By_Id_Should_Found_Return_200(int id)
         {
+            Thread.Sleep(3000);
+
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"},
@@ -68,10 +77,24 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
 
             var result = await handle.Handle(query, default);
 
+            result.Data.Id.Should().Be(id);
+            result.Data.DepartmentName.Should().Be(departmentList.FirstOrDefault(d => d.Id == id).Name);
             result.StatusCode.Should().Be(HttpStatusCode.OK);
             result.Data.Should().NotBeNull();
             result.Data.Should().BeOfType<GetSingleDepartmentResponse>();
             result.Succeeded.Should().BeTrue();
         }
+
+        /*[Fact]
+        public void Test_1()
+        {
+            Thread.Sleep(3000);
+        }
+        
+        [Fact]
+        public void Test_2()
+        {
+            Thread.Sleep(5000);
+        }*/
     }
 }

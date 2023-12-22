@@ -24,13 +24,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DepartmentsTest\Commands\" />
-    <Folder Include="UsersTest\" />
+    <Folder Include="ApplicationTest\UsersTest\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UserManagement.Application\UserManagement.Application.csproj" />
     <ProjectReference Include="..\UserManagement.Domain\UserManagement.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

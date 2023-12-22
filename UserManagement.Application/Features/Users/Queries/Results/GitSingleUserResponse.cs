@@ -16,5 +16,6 @@ namespace UserManagement.Application.Features.Users.Queries.Results
         public string Password { get; set; }
         public string Status { get; set; }
         public int DepartmentId { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

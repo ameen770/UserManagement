@@ -13,7 +13,7 @@ using UserManagement.Application.Mapping.Departments;
 using UserManagement.Application.IServices;
 using UserManagement.Domain.Entities;
 
-namespace UserManagement.XUnitTest.DepartmentsTest.Queries
+namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
 {
     public class GetDepartmentsListTest
     {
@@ -32,6 +32,8 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
         [Fact]
         public async Task Handle_DepartmentsList_Should_NotNull_And_NotEmpty()
         {
+            Thread.Sleep(5000);
+
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"}
@@ -45,5 +47,11 @@ namespace UserManagement.XUnitTest.DepartmentsTest.Queries
             result.Data.Should().BeOfType<List<GetDepartmentsListResponse>>();
             result.Succeeded.Should().BeTrue();
         }
+
+        /*[Fact]
+        public void Test_2()
+        {
+            Thread.Sleep(5000);
+        }*/
     }
 }

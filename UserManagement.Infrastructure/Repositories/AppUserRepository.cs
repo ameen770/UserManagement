@@ -22,7 +22,7 @@ namespace UserManagement.Infrastructure.Repositories
         #region Handles Functions
         public async Task<List<AppUser>> GetUsersListAsync()
         {
-            return await _appUser.ToListAsync();
+            return await _appUser.Include(x => x.Department).ToListAsync();
             //Include(x => x.Department).
         }
         #endregion
