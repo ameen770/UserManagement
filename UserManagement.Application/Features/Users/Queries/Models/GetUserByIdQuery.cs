@@ -9,7 +9,7 @@ using UserManagement.Application.Features.Users.Queries.Results;
 
 namespace UserManagement.Application.Features.Users.Queries.Models
 {
-    public class GetUserByIdQuery : IRequest<Response<GitSingleUserResponse>>
+    public class GetUserByIdQuery : IRequest<Response<GetSingleUserResponse>>
     {
         public int Id { get; set; }
 

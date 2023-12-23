@@ -15,13 +15,13 @@ using UserManagement.Domain.Entities;
 
 namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
 {
-    public class GetDepartmentsListTest
+    public class GetUsersListTest
     {
         private readonly Mock<IDepartmentService> _departmentServiceMock;
         private readonly IMapper _mapperMock;
         private readonly DepartmentProfile _departmentProfile;
 
-        public GetDepartmentsListTest()
+        public GetUsersListTest()
         {
             _departmentServiceMock = new();
             _departmentProfile = new();
@@ -32,8 +32,9 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
         [Fact]
         public async Task Handle_DepartmentsList_Should_NotNull_And_NotEmpty()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
+            //Arrange
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"}
@@ -42,16 +43,13 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
             _departmentServiceMock.Setup(d => d.GetDepartmentsLists()).Returns(Task.FromResult(departmentList));
             var handle = new DepartmentQueryHandler(_departmentServiceMock.Object, _mapperMock);
 
+            //Act
             var result = await handle.Handle(query, default);
+            
+            //Assert
             result.Data.Should().NotBeNullOrEmpty();
             result.Data.Should().BeOfType<List<GetDepartmentsListResponse>>();
             result.Succeeded.Should().BeTrue();
         }
-
-        /*[Fact]
-        public void Test_2()
-        {
-            Thread.Sleep(5000);
-        }*/
     }
 }

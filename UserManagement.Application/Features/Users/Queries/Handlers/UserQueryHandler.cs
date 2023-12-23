@@ -11,7 +11,7 @@ namespace UserManagement.Application.Features.Users.Queries.Handlers
 {
     public class UserQueryHandler : ResponseHandler,
         IRequestHandler<GetUsersListQuery, Response<List<GetUsersListResponse>>>,
-        IRequestHandler<GetUserByIdQuery, Response<GitSingleUserResponse>>
+        IRequestHandler<GetUserByIdQuery, Response<GetSingleUserResponse>>
     {
         #region Fields
         private readonly IAppUserService _appUserService;
@@ -39,11 +39,11 @@ namespace UserManagement.Application.Features.Users.Queries.Handlers
             return result;
         }
 
-        public async Task<Response<GitSingleUserResponse>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<GetSingleUserResponse>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var appUser = await _appUserService.GetUserByIds(request.Id);
-            if (appUser == null) return NotFound<GitSingleUserResponse>(_stringLocalizer[SharedResourcesKeys.NotFound]);
-            var result = _mapper.Map<GitSingleUserResponse>(appUser);
+            if (appUser == null) return NotFound<GetSingleUserResponse>(_stringLocalizer[SharedResourcesKeys.NotFound]);
+            var result = _mapper.Map<GetSingleUserResponse>(appUser);
             return Success(result);
         }
         #endregion

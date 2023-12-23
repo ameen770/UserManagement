@@ -19,13 +19,13 @@ using UserManagement.XUnitTest.TestModel;
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, MaxParallelThreads = 6)]
 namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
 {
-    public class GetDepartmentsByIdTest
+    public class GetUsersByIdTest
     {
         private readonly Mock<IDepartmentService> _departmentServiceMock;
         private readonly IMapper _mapperMock;
         private readonly DepartmentProfile _departmentProfile;
 
-        public GetDepartmentsByIdTest()
+        public GetUsersByIdTest()
         {
             _departmentServiceMock = new();
             _departmentProfile = new();
@@ -39,6 +39,7 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
         {
             Thread.Sleep(3000);
 
+            //Arrange
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"},
@@ -50,8 +51,10 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
             _departmentServiceMock.Setup(d => d.GetDepartmentByIds(id)).Returns(Task.FromResult(departmentList.FirstOrDefault(x => x.Id == id)));
             var handle = new DepartmentQueryHandler(_departmentServiceMock.Object, _mapperMock);
 
+            //Act
             var result = await handle.Handle(query, default);
 
+            //Assert
             result.StatusCode.Should().Be(HttpStatusCode.NotFound);
             result.Data.Should().BeNull();
             result.Succeeded.Should().BeFalse();
@@ -65,6 +68,7 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
         {
             Thread.Sleep(3000);
 
+            //Arrange
             var departmentList = new List<Department>() 
             {
                 new Department() {Id=1, Name="Unit Test"},
@@ -75,8 +79,10 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
             _departmentServiceMock.Setup(d => d.GetDepartmentByIds(id)).Returns(Task.FromResult(departmentList.FirstOrDefault(x => x.Id == id)));
             var handle = new DepartmentQueryHandler(_departmentServiceMock.Object, _mapperMock);
 
+            //Act
             var result = await handle.Handle(query, default);
 
+            //Assert
             result.Data.Id.Should().Be(id);
             result.Data.DepartmentName.Should().Be(departmentList.FirstOrDefault(d => d.Id == id).Name);
             result.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -84,17 +90,5 @@ namespace UserManagement.XUnitTest.ApplicationTest.DepartmentsTest.Queries
             result.Data.Should().BeOfType<GetSingleDepartmentResponse>();
             result.Succeeded.Should().BeTrue();
         }
-
-        /*[Fact]
-        public void Test_1()
-        {
-            Thread.Sleep(3000);
-        }
-        
-        [Fact]
-        public void Test_2()
-        {
-            Thread.Sleep(5000);
-        }*/
     }
 }

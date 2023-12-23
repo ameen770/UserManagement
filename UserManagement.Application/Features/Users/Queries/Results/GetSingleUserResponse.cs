@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserManagement.Application.Features.Users.Queries.Results
 {
-    public class GitSingleUserResponse
+    public class GetSingleUserResponse
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
