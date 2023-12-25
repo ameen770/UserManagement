@@ -6,6 +6,7 @@ namespace UserManagement.WebUI.ViewModels
     {
         [JsonProperty("Id")]
         public int DepartmentId { get; set; }
+        [JsonProperty("DepartmentName")]
         public string DepartmentName { get; set; }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using UserManagement.WebUI.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace UserManagement.WebUI.Controllers
 {
@@ -11,12 +13,12 @@ namespace UserManagement.WebUI.Controllers
     {
         private readonly HttpClient _httpClient;
         //HttpClient _client = new HttpClient();
-        private string BaseURL = "https://localhost:44349/Api/V1/Department/";
+        private string BaseURL = "https://localhost:7186/Api/V1/Department/";
 
         public DepartmentsController()
         {
             _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri(BaseURL); // Replace with your Web API base URL
+            _httpClient.BaseAddress = new Uri(BaseURL);
         }
 
         public async Task<ActionResult> Index()
@@ -65,7 +67,7 @@ namespace UserManagement.WebUI.Controllers
         }
 
         // GET: Departments/Create
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -73,10 +75,36 @@ namespace UserManagement.WebUI.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DepartmentVM department)
-        {
-            if (ModelState.IsValid)
+        {   
+            if (!ModelState.IsValid)
             {
-                string data = System.Text.Json.JsonSerializer.Serialize(department);
+                /*SingleResponseData singleResponseData = new SingleResponseData()
+                {
+                    StatusCode = responseData.StatusCode,
+                    Meta = responseData.Meta,
+                    Succeeded = responseData.Succeeded,
+                    Message = responseData.Message,
+                    Errors = responseData.Errors,
+                    Data = responseData.Data
+                };
+
+                DepartmentVM departmentToCreate = new DepartmentVM
+                {
+                    DepartmentName = department.DepartmentName
+                };
+                responseData.Data = departmentToCreate;*/
+
+
+                return View("Error");
+
+            }
+            else
+            {
+                SingleResponseData responseData = new SingleResponseData
+                {
+                    Data = department
+                };
+                string data = JsonConvert.SerializeObject(responseData);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage result = await _httpClient.PostAsync(BaseURL + "Create", content);
                 if (result.IsSuccessStatusCode)
@@ -88,21 +116,19 @@ namespace UserManagement.WebUI.Controllers
                     return View("Error");
                 }
             }
-            else
-            {
-                return View("Error");
-            }
         }
 
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            DepartmentVM departmentVM = new DepartmentVM();
             HttpResponseMessage responseUrl = await _httpClient.GetAsync(BaseURL + id);
             if (responseUrl.IsSuccessStatusCode)
             {
                 string data = await responseUrl.Content.ReadAsStringAsync();
-                DepartmentVM department = JsonConvert.DeserializeObject<DepartmentVM>(data);
-                return View(department);
+                SingleResponseData responseData = JsonConvert.DeserializeObject<SingleResponseData>(data);
+                departmentVM = responseData.Data;
+                return View(departmentVM);
             }
             else
             {
@@ -113,12 +139,23 @@ namespace UserManagement.WebUI.Controllers
         // POST: Departments/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(DepartmentVM department)
+        public async Task<IActionResult> Edit(int id, DepartmentVM department)
         {
+
+            if (id != department.DepartmentId)
+            {
+                return BadRequest();
+            }
 
             if (ModelState.IsValid)
             {
-                string data = System.Text.Json.JsonSerializer.Serialize(department);
+                DepartmentVM departmentToCreate = new DepartmentVM
+                {
+                    DepartmentId = department.DepartmentId,
+                    DepartmentName = department.DepartmentName
+                };
+
+                string data = JsonConvert.SerializeObject(departmentToCreate);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
                 HttpResponseMessage result = await _httpClient.PutAsync(BaseURL + "Edit", content);
                 if (result.IsSuccessStatusCode)
@@ -139,12 +176,14 @@ namespace UserManagement.WebUI.Controllers
         // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            DepartmentVM departmentVM = new DepartmentVM();
             HttpResponseMessage responseUrl = await _httpClient.GetAsync(BaseURL + id);
             if (responseUrl.IsSuccessStatusCode)
             {
                 string data = await responseUrl.Content.ReadAsStringAsync();
-                DepartmentVM clientRequest = JsonConvert.DeserializeObject<DepartmentVM>(data);
-                return View(clientRequest);
+                SingleResponseData responseData = JsonConvert.DeserializeObject<SingleResponseData>(data);
+                departmentVM = responseData.Data;
+                return View(departmentVM);
             }
             else
             {
