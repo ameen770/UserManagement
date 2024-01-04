@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Infrastructu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.XUnitTest", "UserManagement.XUnitTest\UserManagement.XUnitTest.csproj", "{772918D6-BAE5-4231-8253-A92C17294AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.WebUI", "UserManagement.WebUI\UserManagement.WebUI.csproj", "{FF415108-47FE-4C88-9008-6060D7B6CA0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.WebUI", "UserManagement.WebUI\UserManagement.WebUI.csproj", "{FF415108-47FE-4C88-9008-6060D7B6CA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.WebApi", "Gateway.WebApi\Gateway.WebApi.csproj", "{84837AE4-CCB2-47F2-BF3D-5C507C4E11AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{FF415108-47FE-4C88-9008-6060D7B6CA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF415108-47FE-4C88-9008-6060D7B6CA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF415108-47FE-4C88-9008-6060D7B6CA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84837AE4-CCB2-47F2-BF3D-5C507C4E11AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84837AE4-CCB2-47F2-BF3D-5C507C4E11AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84837AE4-CCB2-47F2-BF3D-5C507C4E11AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84837AE4-CCB2-47F2-BF3D-5C507C4E11AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
